@@ -12,6 +12,7 @@ author：liujinde
 其他类型不予支持,这三种类型通过反射机制已经可以覆盖ffmpeg的所有命令行下的参数形式。
 
 4、最终将类似ffmpeg -y   -i a.mp4  -f overlay=x=100:y=100,boxblur=lr=21;hflip b.mp4 的命令封装成以下调用形式：
+
 ffmpeg.FFmpeg("/usr/bin/ffmpeg").Input(input).Output(output).Filter(filter).Exec()
 
 其中滤镜链为:overlay=x=100:y=100,boxblur=lr=21     
