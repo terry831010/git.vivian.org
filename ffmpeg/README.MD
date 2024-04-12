@@ -4,7 +4,6 @@ author：liujinde
 
 基本思路： 
 1、观察 ffmpeg的命令行规范:   ffmpeg  [全局参数]  [输入文件与参数列表] [过滤器]  [输出文件与参数列表]，对应本库的形式是:
-ffmpeg.FFmpeg("/usr/bin/ffmpeg").Input(input).Output(output).Filter(filter).Exec()
 
 2、将其中的输入、过滤器、输出抽象成三个不同的对象，利用golang中的tag与反射机制将参数与成员变量结合起来。
 
@@ -13,9 +12,10 @@ ffmpeg.FFmpeg("/usr/bin/ffmpeg").Input(input).Output(output).Filter(filter).Exec
 其他类型不予支持,这三种类型通过反射机制已经可以覆盖ffmpeg的所有命令行下的参数形式。
 
 4、最终将类似ffmpeg -y   -i a.mp4  -f overlay=x=100:y=100,boxblur=lr=21;hflip b.mp4 的命令封装成以下调用形式：
+ffmpeg.FFmpeg("/usr/bin/ffmpeg").Input(input).Output(output).Filter(filter).Exec()
 
 其中滤镜链为:overlay=x=100:y=100,boxblur=lr=21     
-
+示例代码：
 import (
 
     "git.wingyouth.org/ffmpeg"
