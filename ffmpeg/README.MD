@@ -3,7 +3,8 @@ author：liujinde
 2021-12-20
 
 基本思路： 
-1、观察 ffmpeg的命令行规范:   ffmpeg  [全局参数]  [输入文件与参数列表] [过滤器]  [输出文件与参数列表]
+1、观察 ffmpeg的命令行规范:   ffmpeg  [全局参数]  [输入文件与参数列表] [过滤器]  [输出文件与参数列表]，对应本库的形式是:
+ffmpeg.FFmpeg("/usr/bin/ffmpeg").Input(input).Output(output).Filter(filter).Exec()
 
 2、将其中的输入、过滤器、输出抽象成三个不同的对象，利用golang中的tag与反射机制将参数与成员变量结合起来。
 
@@ -51,8 +52,6 @@ fp.Filter(flipFilter)
 ret := fp.Exec()
 
 fmt.Println(ret)
-
-便于在程序中调用。
 
 5、filter目录下已经内置了常用的滤镜,可以参考其中滤镜的写法增加你需要的滤镜。
 
